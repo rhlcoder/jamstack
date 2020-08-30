@@ -1,17 +1,60 @@
-html,
-body {
-  color: #555;
-  font-family: sans-serif;
-  font-size: 18px;
-  margin: 0;
+:root {
+	/* --icono : "⬆️"; */
+	--cursor: url(up.png);
+}
+*{
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+input {
+	display: block;
 }
 
-main {
-  margin: 3rem auto;
-  max-width: 90vw;
-  width: 50ch;
+h1,
+strong {
+	margin-left: 20px;
 }
 
-h1 {
-  color: #333;
+#deseados > li:hover {
+	color: #104ddb;
+	list-style-type: circle;
+	cursor: var(--icono), auto;
+}
+
+/* #deseados > li:hover::before {
+	content: var(--icono);
+} */
+
+#deseados:hover {
+	/* content: var(--icono); */
+	cursor: var(--cursor), auto;
+}
+
+button {
+	margin-left: 20px;
+}
+
+#validationWrapper{
+  background: rgb(177, 228, 110);
+  display: flex;
+  flex-flow: row wrap;
+  padding-bottom: 20px;
+  padding-left: 20px;
+}
+
+form{
+  width: 25%;
+}
+
+#error{
+  width: 50%;
+}
+
+#enviar{
+  margin-top: 20px;
+  margin-left: 0px;
+}
+
+li{
+  list-style-type: none;
 }

@@ -4,18 +4,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TP 2.1</title>
   <link rel="stylesheet" href="style.css">
-  <title>My First JAMstack Website</title>
+  <script src="tp2.1.js" defer></script>
+  <script src="tp2.2.js" defer></script>
 </head>
 
 <body>
-  <main>
-    <h1>Hello Frontendmasters</h1>
-    <p>I like to write codes</p>
-    <h2>Recently updated Code Projects</h2>
-    <div id="content">Loading...</div>
-  </main>
-  <script type="module" src="main.js"></script>
+  <div id="validationWrapper">
+    <form id="formulario">
+      <label for="nombre">Nombre</label>
+      <input type="text" name="nombre" id="nombre">
+      <label for="apellido">Apellido</label>
+      <input type="text" name="apellido" id="apellido">
+      <label for="edad">Edad</label>
+      <input type="text" name="edad" id="edad">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password">
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email">
+      <button id="enviar" >Enviar</button>
+    </form>
+    <ul id="errorList">
+    </ul>
+  </div>
+  <div class="wishlist">
+    <h1>
+      Productos
+    </h1>
+    <ul id="productos">
+      <li id="prod1" draggable="true">Producto 1 <button>Agregar a la lista de deseados</button></li>
+      <li id="prod2" draggable="true">Producto 2 <button>Agregar a la lista de deseados</button></li>
+      <li id="prod3" draggable="true">Producto 3 <button>Agregar a la lista de deseados</button></li>
+      <li id="prod4" draggable="true">Producto 4 <button>Agregar a la lista de deseados</button></li>
+      <li id="prod5" draggable="true">Producto 5 <button>Agregar a la lista de deseados</button></li>
+      <li id="prod6" draggable="true">Producto 6 <button>Agregar a la lista de deseados</button></li>
+    </ul>
+    <h1>Lista de deseados</h1>
+    <strong>click: ⬆️ | shift+click: ⬇️</strong>
+    <ul id="deseados"></ul>
+  </div>
 </body>
 
 </html>
