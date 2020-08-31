@@ -1,78 +1,78 @@
-// Console.log(getComputedStyle(document.documentElement).getPropertyValue('--icono'))
-
 const productos = document.querySelector('#productos');
 const deseados = document.querySelector('#deseados');
 
-// En este caso uso el parent node como base y con un if, selecciono el children
-// para lidiar con la propagacion.
+const productoYaAgregado = (currentButton) => {
+  currentButton.firstChild.replaceWith('El producto ya fue agregado');
+  currentButton.style.setProperty('background', '#f98');
+  setTimeout(() => {
+    currentButton.firstChild.replaceWith('Agregar a la lista de deseados');
+    currentButton.removeAttribute('style');
+  }, 300);
+};
 
-/* Version que pide el TP */
-// Para agragar a la lista de deseados
-productos.addEventListener('click', e => {
-	if (e.target.nodeName === 'BUTTON') {
-		const id = `#${e.target.parentElement.id}`;
-		const selected = document.querySelector(id);
-		if (document.querySelector(`${id}-deseado`)) {
-			// Alert("El producto ya fue agregado")
-			console.log('El producto ya fue agregado');
-		} else {
-			const copy = selected.cloneNode(true);
-			copy.id += '-deseado';
-			deseados.append(copy);
-			copy.lastChild.textContent = 'Quitar de la lista de deseados';
-		}
-	}
+// Para agragar a la lista de deseados uso el parent node como base
+// y con un if, selecciono el children
+productos.addEventListener('click', (event) => {
+  if (event.target.nodeName === 'BUTTON') {
+    const idProducto = `#${event.target.parentElement.id}`;
+    const producto = document.querySelector(idProducto);
+    if (document.querySelector(`${idProducto}-deseado`)) {
+      const currentButton = event.target;
+      productoYaAgregado(currentButton);
+    } else {
+      const copy = producto.cloneNode(true);
+      copy.id += '-deseado';
+      deseados.append(copy);
+      copy.lastChild.textContent = 'Quitar de la lista de deseados';
+    }
+  }
 });
 
-deseados.addEventListener('click', e => {
-	// Para remover de la lista de deseados
-	if (e.target.nodeName === 'BUTTON') {
-		const selected = document.querySelector(`#${e.target.parentElement.id}`);
-		selected.remove();
-	}
+const prioritySort = (event, item) => {
+  if (item.nextSibling && event.shiftKey) {
+    // deseados.insertBefore(item.nextSibling, item);
+    item.nextSibling.after(item);
+  } else if (item.previousSibling && !event.shiftKey) {
+    // deseados.insertBefore(item, item.previousSibling);
+    item.previousSibling.before(item);
+  }
+};
 
-	// Para ordenar por prioridad
-	if (e.target.nodeName === 'LI') {
-		const ul = document.querySelector('#deseados');
-		const item = document.querySelector('#' + e.target.id);
-		if (e.shiftKey) {
-			if (item.nextSibling) {
-				ul.insertBefore(item.nextSibling, item);
-			}
-		} else if (item.previousSibling) {
-			ul.insertBefore(item, item.previousSibling);
-		}
-	}
+deseados.addEventListener('click', (event) => {
+  // Para remover de la lista de deseados
+  if (event.target.nodeName === 'BUTTON') {
+    document.querySelector(`#${event.target.parentElement.id}`).remove();
+  }
+
+  // Para ordenar por prioridad
+  if (event.target.nodeName === 'LI') {
+    const item = document.querySelector(`#${event.target.id}`);
+    prioritySort(event, item);
+  }
 });
 
-// Para cambiar el icono, o el cursor cuando se aprieta shift
-// modifico una variable en css, que se aplica al campo correspondiente
-
-document.addEventListener('keydown', e => {
-	if (e.shiftKey) {
-		// Document.documentElement.style.setProperty('--icono', '"⬇️"')
-		document.documentElement.style.setProperty('--cursor', 'url(down.png)');
-	}
+// Modifico una variable en css, que se aplica al campo correspondiente
+// Para cambiar el cursor cuando se aprieta shift
+document.addEventListener('keydown', (event) => {
+  if (event.shiftKey) {
+    document.documentElement.style.setProperty('--cursor', 'url(down.png)');
+  }
 });
 
 document.addEventListener('keyup', () => {
-	// Document.documentElement.style.setProperty('--icono', '"⬆️"')
-	document.documentElement.style.setProperty('--cursor', 'url(up.png)');
+  document.documentElement.style.setProperty('--cursor', 'url(up.png)');
 });
 
-// Version mas chevere
-/* productos.addEventListener('click', (e) => {
-	if (e.target.nodeName === 'BUTTON') {
-    e.target.textContent = 'Quitar de la lista de deseados'
-    let selected = document.querySelector(`#${e.target.parentElement.id}`)
-		deseados.append(selected)
-	}
-})
+/* // Para cambiar el icono cuando se aprieta shift
+document.addEventListener('keydown', (event) => {
+  if (event.shiftKey) {
+    document.documentElement.style.setProperty('--icono', '"⬇️"');
+  }
+});
 
-deseados.addEventListener('click', (e) => {
-  if (e.target.nodeName === 'BUTTON') {
-    e.target.textContent = 'Agregar a la lista de deseados'
-		let selected = document.querySelector(`#${e.target.parentElement.id}`)
-		productos.append(selected)
-	}
-}) */
+document.addEventListener('keyup', () => {
+  document.documentElement.style.setProperty('--icono', '"⬆️"');
+}); */
+
+// Para saber el valor de una variable en CSS, uso este codigo:
+// console.log(getComputedStyle(document.documentElement).getPropertyValue('--icono'))
