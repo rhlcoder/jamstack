@@ -1,24 +1,30 @@
 :root {
-	/* --icono : "⬆️"; */
-	--cursor: url(up.png);
+  /* --icono : "⬆️"; */
+  --cursor: url(up.png);
 }
-*{
+
+* {
   box-sizing: border-box;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
 input {
-	display: block;
+  display: block;
 }
 
 h1,
 strong {
-	margin-left: 20px;
+  margin-left: 20px;
+}
+
+li {
+  list-style-type: none;
 }
 
 #deseados > li:hover {
-	color: #104ddb;
-	list-style-type: circle;
-	cursor: var(--icono), auto;
+  color: #104ddb;
+  list-style-type: circle;
+  cursor: var(--icono), auto;
 }
 
 /* #deseados > li:hover::before {
@@ -26,15 +32,20 @@ strong {
 } */
 
 #deseados:hover {
-	/* content: var(--icono); */
-	cursor: var(--cursor), auto;
+  /* content: var(--icono); */
+  cursor: var(--cursor), auto;
 }
 
 button {
-	margin-left: 20px;
+  margin-left: 20px;
+  width: 220px;
 }
 
-#validationWrapper{
+form {
+  width: 25%;
+}
+
+#validationWrapper {
   background: rgb(177, 228, 110);
   display: flex;
   flex-flow: row wrap;
@@ -42,19 +53,11 @@ button {
   padding-left: 20px;
 }
 
-form{
-  width: 25%;
-}
-
-#error{
+#error {
   width: 50%;
 }
 
-#enviar{
+#enviar {
   margin-top: 20px;
-  margin-left: 0px;
-}
-
-li{
-  list-style-type: none;
+  margin-left: 1px;
 }
